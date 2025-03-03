@@ -72,14 +72,14 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-ZSH_TMUX_AUTOSTART=true
+#ZSH_TMUX_AUTOSTART=true
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting z tmux) 
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting z) 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,9 +112,6 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# ROS
-source /opt/ros/jazzy/setup.zsh
-
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -123,8 +120,3 @@ eval "$(pyenv virtualenv-init -)"
 
 # Aliases
 alias lzg='lazygit'
-alias ws_foxglove='ros2 launch foxglove_bridge foxglove_bridge_launch.xml'
-
-# Custom bash scripts 
-bindkey -s ^o 'vscode-opener\n'
-bindkey -s ^f 'tmux-sessionizer\n'
