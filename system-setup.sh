@@ -11,7 +11,7 @@ stow zshrc vimrc tmux fonts
 
 echo "==============================================Installing tmux============================================="
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-	echo "Cloning TPM..."
+	echo "Cloning tpm"
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
 	echo "TPM already cloned"
@@ -51,6 +51,13 @@ else
 	sudo update-alternatives --config x-terminal-emulator
 fi
 
-echo "==============================================Setting default shell============================================="
-chsh -s $(which zsh)
-echo "Now restart your computer..."
+echo "==============================================Installing pyenv============================================="
+if [ ! -d "$HOME/.pyenv" ]; then
+	echo "Cloning pyenv and pyenv-virtualenv"
+	curl -fsSL https://pyenv.run | bash
+	git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+else
+	echo "Pyenv already installed"
+fi
+
+echo "Now restart change your default shell to zsh and restart your computer!"

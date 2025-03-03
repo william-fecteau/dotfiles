@@ -13,3 +13,4 @@ libxcb-xfixes0-dev
 libxkbcommon-dev
 python3
 python3-dev
+xclip
