@@ -7,7 +7,7 @@ echo "==============================================Installing packages=========
 xargs -a packages.txt sudo apt-get install -y
 
 echo "==============================================Stowing dotfiles============================================="
-stow zshrc vimrc tmux fonts
+stow zshrc vimrc tmux i3 fonts
 
 echo "==============================================Installing tmux============================================="
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
