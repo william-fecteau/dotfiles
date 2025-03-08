@@ -1,0 +1,12 @@
+# Git aliases
+alias gs='git status'
+alias gps='git push'
+alias gpl='git pull'
+alias gc='git commit -m'
+alias ga='git add'
+alias gck='git checkout'
+alias gckb='git checkout -b'
+alias gb='git branch'
+
+# Program aliases
+alias lzg='lazygit'

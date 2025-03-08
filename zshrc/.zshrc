@@ -119,4 +119,4 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # Aliases
-alias lzg='lazygit'
+source ~/.zsh_aliases

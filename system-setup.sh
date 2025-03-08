@@ -72,4 +72,19 @@ else
 	rm lazygit*
 fi
 
+
+echo "==============================================Git config============================================="
+git config --global pull.rebase false
+git config --global push.autoSetupRemote true
+git config --global push.default current
+
+# Submodule sorcery: https://github.com/vaul-ulaval/vaul-wiki/wiki/Utilisation-des-submodules
+git config --global diff.submodule log # Après un git diff, affiche aussi les nouveaux commits des submodules
+git config --global status.submodulesummary true # Après un git status, affiche un résumé des commits des submodules
+git config --global submodule.recurse true # Fais en sorte que toutes les commandes git (sauf clone), auront le flag --recurse-submodules
+git config --global push.recurseSubmodules on-demand # S'assure qu'on ne puisse pas pousser des changements sans que les submodules soient eux aussi poussés
+git config --global alias.sdiff '!'"git diff && git submodule foreach 'git diff'" # Ajout de la commande 'git sdiff' pour voir un diff de chaque submodule
+git config --global alias.supdate '!'"git submodule update --remote --merge" # Ajout de la commande 'git supdate' pour l'update de submodules
+
+
 echo "Now restart change your default shell to zsh and restart your computer!"
