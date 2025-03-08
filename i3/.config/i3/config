@@ -195,9 +195,6 @@ bar {
 # Screen placement
 exec_always xrandr --output HDMI-0 --mode 1920x1080 --pos 2560x0 --rotate left --output DP-0 --primary --mode 2560x1440 --pos 3640x348 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-5 --off
 
-# Lock screen
-bindsym $mod+shift+x exec i3lock
-
 # DP-0=Main screen
 workspace $ws1 output DP-0
 workspace $ws2 output DP-0
@@ -220,9 +217,14 @@ assign [class="Slack"] $ws8
 # ws9 = Media
 assign [class="Spotify"] $ws9
 
-
 exec --no-startup-id spotify
 exec --no-startup-id code
 exec --no-startup-id alacritty
 exec --no-startup-id firefox
 #exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 1'
+
+# Prevent losing focus just when moving mouse, else it messes up copy/paste
+focus_follows_mouse no
+
+# Lock screen
+bindsym $mod+shift+x exec i3lock

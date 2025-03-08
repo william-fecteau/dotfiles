@@ -1,5 +1,6 @@
 curl
 vim
+vim-gtk3
 git
 stow
 tmux
