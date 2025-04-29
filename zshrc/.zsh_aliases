@@ -1,4 +1,9 @@
-# Git aliases
+# Utils
+mkcd() {
+  mkdir "$1" && cd "$1"
+}
+
+# Git
 alias gs='git status'
 alias gps='git push'
 alias gpl='git pull'
