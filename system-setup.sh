@@ -13,7 +13,7 @@ echo "Press Enter to continue..."
 read dummy
 
 echo "==============================================Stowing dotfiles============================================="
-stow zshrc vimrc tmux i3 fonts
+stow zshrc vimrc tmux i3 fonts alacritty
 
 echo "Press Enter to continue..."
 read dummy
@@ -34,6 +34,23 @@ else
 	echo "oh-my-zsh already cloned, assuming its properly installed"
 fi
 
+echo "Press Enter to continue..."
+read dummy
+
+echo "==============================================Installing Alacritty============================================="
+if command -v alacritty > /dev/null 2>&1
+ 	echo "Alacritty already installed"
+ else
+ 	echo "Installing rust and Alacritty"
+ 	curl https://sh.rustup.rs -sSf | sh -s -- -y
+ 	source ~/.bashrc
+ 	cargo install alacritty
+ 
+ 	# Setting alacritty as default shell: https://gist.github.com/aanari/08ca93d84e57faad275c7f74a23975e6?permalink_comment_id=3822304
+ 	sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which alacritty) 50
+ 	sudo update-alternatives --config x-terminal-emulator
+fi
+ 
 echo "Press Enter to continue..."
 read dummy
 
