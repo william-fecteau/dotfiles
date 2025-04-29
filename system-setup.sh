@@ -3,20 +3,20 @@
 echo "==============================================Performing updates=============================================="
 sudo apt-get update -y && sudo apt-get upgrade -y
 
+echo "Press Enter to continue..."
+read dummy
+
 echo "==============================================Installing packages============================================="
 xargs -a packages.txt sudo apt-get install -y
+
+echo "Press Enter to continue..."
+read dummy
 
 echo "==============================================Stowing dotfiles============================================="
 stow zshrc vimrc tmux i3 fonts
 
-echo "==============================================Installing tmux============================================="
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-	echo "Cloning tpm"
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-else
-	echo "TPM already cloned"
-fi
-. ~/.tmux/plugins/tpm/bin/install_plugins
+echo "Press Enter to continue..."
+read dummy
 
 echo "==============================================Installing oh-my-zsh============================================="
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -34,22 +34,14 @@ else
 	echo "oh-my-zsh already cloned, assuming its properly installed"
 fi
 
+echo "Press Enter to continue..."
+read dummy
+
 echo "==============================================Updating fonts============================================="
 fc-cache -f -v
 
-echo "==============================================Installing Alacritty============================================="
-if command -v alacritty &> /dev/null; then
-	echo "Alacritty already installed"
-else
-	echo "Installing rust and Alacritty"
-	curl https://sh.rustup.rs -sSf | sh -s -- -y
-	source ~/.bashrc
-	cargo install alacritty
-
-	# Setting alacritty as default shell: https://gist.github.com/aanari/08ca93d84e57faad275c7f74a23975e6?permalink_comment_id=3822304
-	sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which alacritty) 50
-	sudo update-alternatives --config x-terminal-emulator
-fi
+echo "Press Enter to continue..."
+read dummy
 
 echo "==============================================Installing pyenv============================================="
 if [ ! -d "$HOME/.pyenv" ]; then
@@ -59,6 +51,9 @@ if [ ! -d "$HOME/.pyenv" ]; then
 else
 	echo "Pyenv already installed"
 fi
+
+echo "Press Enter to continue..."
+read dummy
 
 
 echo "==============================================Installing lazygit============================================="
@@ -72,6 +67,40 @@ else
 	rm lazygit*
 fi
 
+echo "Press Enter to continue..."
+read dummy
+
+echo "==============================================Installing docker============================================"
+if ! command -v docker > /dev/null 2>&1
+then
+	# Add Docker's official GPG key:
+	sudo apt-get update -y
+	sudo apt-get install ca-certificates curl -y
+	sudo install -m 0755 -d /etc/apt/keyrings
+	sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+	sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+	# Add the repository to Apt sources:
+	echo \
+	  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+	  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+	  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	sudo apt-get update -y
+
+	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+	sudo groupadd docker
+	sudo usermod -aG docker $USER
+	newgrp docker
+
+	sudo systemctl enable docker.service
+	sudo systemctl enable containerd.service
+else
+	echo "Docker is already installed" 
+fi
+
+echo "Press Enter to continue..."
+read dummy
 
 echo "==============================================Git config============================================="
 git config --global pull.rebase false
@@ -86,5 +115,10 @@ git config --global push.recurseSubmodules on-demand # S'assure qu'on ne puisse 
 git config --global alias.sdiff '!'"git diff && git submodule foreach 'git diff'" # Ajout de la commande 'git sdiff' pour voir un diff de chaque submodule
 git config --global alias.supdate '!'"git submodule update --remote --merge" # Ajout de la commande 'git supdate' pour l'update de submodules
 
+echo "Press Enter to continue..."
+read dummy
 
-echo "Now restart change your default shell to zsh and restart your computer!"
+echo "==============================================Setting default shell============================================"
+chsh -s $(which zsh)
+
+echo "Now restart restart your computer!"
