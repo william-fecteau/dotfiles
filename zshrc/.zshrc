@@ -120,3 +120,6 @@ eval "$(pyenv virtualenv-init -)"
 
 # Aliases
 source ~/.zsh_aliases
+
+# ROS
+source /opt/ros/humble/setup.zsh

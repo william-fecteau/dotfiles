@@ -46,7 +46,7 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+#tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -193,34 +193,31 @@ bar {
 # ============================== Custom configs ============================== 
 
 # Screen placement
-exec_always xrandr --output HDMI-0 --mode 1920x1080 --pos 2560x0 --rotate left --output DP-0 --primary --mode 2560x1440 --pos 3640x348 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-5 --off
+exec_always xrandr --output eDP-1 --primary --mode 1920x1200 --pos 0x481 --rotate normal --output HDMI-1 --mode 1920x1200 --pos 1920x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off
 
 # DP-0=Main screen
-workspace $ws1 output DP-0
-workspace $ws2 output DP-0
-workspace $ws3 output DP-0
+workspace $ws1 output HDMI-1
+workspace $ws2 output HDMI-1
+workspace $ws3 output HDMI-1
 
 # HDMI-0=Secondary screen
-workspace $ws7 output HDMI-0
-workspace $ws8 output HDMI-0
-workspace $ws9 output HDMI-0
+workspace $ws7 output eDP-1
+workspace $ws8 output eDP-1
+workspace $ws9 output eDP-1
 
-# ws1 = Terminal + Browsing
+# ws1 = Terminal
 # ws2 = Code Editor
-assign [class="Code"] $ws2
 # ws3 = Misc
 
 # ws7 = Misc
-# ws8 = Messaging
-assign [class="teams-for-linux"] $ws8
-assign [class="Slack"] $ws8
+# ws8 = Browsing
 # ws9 = Media
 assign [class="Spotify"] $ws9
+assign [class="teams-for-linux"] $ws8
+assign [class="Slack"] $ws8
 
 exec --no-startup-id spotify
-exec --no-startup-id code
 exec --no-startup-id alacritty
-exec --no-startup-id firefox
 #exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 1'
 
 # Prevent losing focus just when moving mouse, else it messes up copy/paste
@@ -228,3 +225,6 @@ focus_follows_mouse no
 
 # Lock screen
 bindsym $mod+shift+x exec i3lock
+
+# Touchpad tapping on Lenovo X1
+exec_always --no-startup-id xinput set-prop "SYNA8017:00 06CB:CEB2 Touchpad" "libinput Tapping Enabled" 1
