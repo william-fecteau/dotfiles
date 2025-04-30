@@ -205,22 +205,19 @@ workspace $ws7 output HDMI-0
 workspace $ws8 output HDMI-0
 workspace $ws9 output HDMI-0
 
-# ws1 = Terminal + Browsing
+# ws1 = Terminal
 # ws2 = Code Editor
-assign [class="Code"] $ws2
 # ws3 = Misc
 
 # ws7 = Misc
-# ws8 = Messaging
+# ws8 = Browsing
+# ws9 = Media
 assign [class="teams-for-linux"] $ws8
 assign [class="Slack"] $ws8
-# ws9 = Media
 assign [class="Spotify"] $ws9
 
 exec --no-startup-id spotify
-exec --no-startup-id code
 exec --no-startup-id alacritty
-exec --no-startup-id firefox
 #exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 1'
 
 # Prevent losing focus just when moving mouse, else it messes up copy/paste
