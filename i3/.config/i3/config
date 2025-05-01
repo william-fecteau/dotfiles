@@ -212,11 +212,9 @@ workspace $ws9 output eDP-1
 # ws7 = Misc
 # ws8 = Browsing
 # ws9 = Media
-assign [class="teams-for-linux"] $ws8
-assign [class="Slack"] $ws8
+assign [class="teams-for-linux"] $ws9
+assign [class="Slack"] $ws9
 assign [class="Spotify"] $ws9
-assign [class="teams-for-linux"] $ws8
-assign [class="Slack"] $ws8
 
 exec --no-startup-id spotify
 exec --no-startup-id alacritty
