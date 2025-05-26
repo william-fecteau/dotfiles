@@ -122,4 +122,11 @@ eval "$(pyenv virtualenv-init -)"
 source ~/.zsh_aliases
 
 # ROS
+eval "$(register-python-argcomplete3 ros2)"
+eval "$(register-python-argcomplete3 colcon)"
 source /opt/ros/humble/setup.zsh
+source ~/vaul/ros2_ws/install/setup.zsh
+export WORKSPACE_PATH=~/vaul/ros2_ws
+export MAP_NAME=
+export RACELINE_NAME=
+export IS_SIM=false
