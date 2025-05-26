@@ -229,3 +229,7 @@ bindsym $mod+shift+x exec i3lock
 
 # Touchpad tapping on Lenovo X1
 exec_always --no-startup-id xinput set-prop "SYNA8017:00 06CB:CEB2 Touchpad" "libinput Tapping Enabled" 1
+# Shortcuts
+bindsym $mod+b exec --no-startup-id brave-browser
+bindsym $mod+c exec --no-startup-id code
+
