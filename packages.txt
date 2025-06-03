@@ -16,3 +16,4 @@ python3
 python3-dev
 xclip
 i3
+maim

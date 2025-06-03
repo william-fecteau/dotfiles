@@ -232,3 +232,6 @@ bindsym $mod+c exec --no-startup-id code
 
 # Setting keyboards
 exec_always --no-startup-id setxkbmap -layout 'us,us' -variant ',intl' -option 'grp:alt_shift_toggle'
+
+# Screenshot
+bindsym Print exec NOW=$(date +%d-%b-%Y_%H-%M-%S) && maim --format png --select > ~/screenshots/screenshot_$NOW.png && xclip -selection clip -t image/png ~/screenshots/screenshot_$NOW.png
