@@ -130,3 +130,7 @@ export WORKSPACE_PATH=~/vaul/ros2_ws
 export MAP_NAME=
 export RACELINE_NAME=
 export IS_SIM=false
+
+export ZENOH_ROUTER_CONFIG_URI=$HOME/zenoh/zenoh_router.json5
+export ZENOH_SESSION_CONFIG_URI=$HOME/zenoh/zenoh_session.json5
+export RMW_IMPLEMENTATION=rmw_zenoh_cpp

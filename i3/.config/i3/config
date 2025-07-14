@@ -192,19 +192,20 @@ bar {
 
 # ============================== Custom configs ============================== 
 
-# Screen placement
-#exec_always xrandr --output eDP-1 --primary --mode 1920x1200 --pos 0x481 --rotate normal --output HDMI-1 --mode 1920x1200 --pos 1920x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off
-exec_always xrandr --output eDP-1 --mode 1920x1200 --pos 0x1049 --rotate normal --output HDMI-1 --primary --mode 1920x1200 --pos 1920x401 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-1-1 --mode 1920x1200 --pos 3840x0 --rotate right --output DP-1-2 --off --output DP-1-3 --off
+# Screen 
+set $primaryMonitor DP-1-2
+set $secondaryMonitor DP-1-1
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1200 --pos 0x2051 --rotate normal --output $secondaryMonitor --mode 1920x1080 --pos 3840x1094 --rotate right --output $primaryMonitor --primary --mode 1920x1080 --pos 1920x1514 --rotate normal 
 
-# DP-0=Main screen
-workspace $ws1 output HDMI-1
-workspace $ws2 output HDMI-1
-workspace $ws3 output HDMI-1
+# Primary screen
+workspace $ws1 output $primaryMonitor
+workspace $ws2 output $primaryMonitor
+workspace $ws3 output $primaryMonitor
 
-# HDMI-0=Secondary screen
-workspace $ws7 output DP-1-1
-workspace $ws8 output DP-1-1
-workspace $ws9 output DP-1-1
+# Secondary screen
+workspace $ws7 output $secondaryMonitor
+workspace $ws8 output $secondaryMonitor
+workspace $ws9 output $secondaryMonitor
 
 # ws1 = Terminal
 # ws2 = Code Editor
@@ -213,13 +214,6 @@ workspace $ws9 output DP-1-1
 # ws7 = Misc
 # ws8 = Browsing
 # ws9 = Media
-assign [class="teams-for-linux"] $ws9
-assign [class="Slack"] $ws9
-assign [class="Spotify"] $ws9
-
-exec --no-startup-id spotify
-exec --no-startup-id alacritty
-#exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 1'
 
 # Prevent losing focus just when moving mouse, else it messes up copy/paste
 focus_follows_mouse no
@@ -235,4 +229,5 @@ bindsym $mod+b exec --no-startup-id brave-browser
 bindsym $mod+c exec --no-startup-id code
 
 # Setting keyboards
-exec_always --no-startup-id setxkbmap -layout 'us,us' -variant ',intl' -option 'grp:alt_shift_toggle'
+exec_always --no-startup-id sh -c "sleep 1 && setxkbmap -layout 'us,us' -variant ',intl' -option 'grp:alt_shift_toggle'"
+
