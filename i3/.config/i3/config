@@ -207,14 +207,6 @@ workspace $ws7 output $secondaryMonitor
 workspace $ws8 output $secondaryMonitor
 workspace $ws9 output $secondaryMonitor
 
-# ws1 = Terminal
-# ws2 = Code Editor
-# ws3 = Misc
-
-# ws7 = Misc
-# ws8 = Browsing
-# ws9 = Media
-
 # Prevent losing focus just when moving mouse, else it messes up copy/paste
 focus_follows_mouse no
 
@@ -231,3 +223,5 @@ bindsym $mod+c exec --no-startup-id code
 # Setting keyboards
 exec_always --no-startup-id sh -c "sleep 1 && setxkbmap -layout 'us,us' -variant ',intl' -option 'grp:alt_shift_toggle'"
 
+# Screenshot
+bindsym Print exec NOW=$(date +%d-%b-%Y_%H-%M-%S) && maim --format png --select > ~/screenshots/screenshot_$NOW.png && xclip -selection clip -t image/png ~/screenshots/screenshot_$NOW.png
