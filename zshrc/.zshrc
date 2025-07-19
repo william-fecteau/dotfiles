@@ -120,17 +120,3 @@ eval "$(pyenv virtualenv-init -)"
 
 # Aliases
 source ~/.zsh_aliases
-
-# ROS
-eval "$(register-python-argcomplete3 ros2)"
-eval "$(register-python-argcomplete3 colcon)"
-source /opt/ros/humble/setup.zsh
-source ~/vaul/ros2_ws/install/setup.zsh
-export WORKSPACE_PATH=~/vaul/ros2_ws
-export MAP_NAME=
-export RACELINE_NAME=
-export IS_SIM=false
-
-export ZENOH_ROUTER_CONFIG_URI=$HOME/zenoh/zenoh_router.json5
-export ZENOH_SESSION_CONFIG_URI=$HOME/zenoh/zenoh_session.json5
-export RMW_IMPLEMENTATION=rmw_zenoh_cpp
