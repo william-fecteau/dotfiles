@@ -194,6 +194,7 @@ bar {
 
 # Screen 
 bindsym $mod+Shift+r exec --no-startup-id ~/.config/i3/monitors.bash && i3-msg restart
+exec_always --no-startup-id ~/.config/i3/monitors.bash 
 include ~/.config/i3/monitors.conf
 
 # Prevent losing focus just when moving mouse, else it messes up copy/paste
